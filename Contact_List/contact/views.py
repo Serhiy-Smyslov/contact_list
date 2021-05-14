@@ -6,8 +6,17 @@ from contact.models import Contact
 def index(request):
     """Show all user contacts."""
     contacts = Contact.objects.all()
+
+    search_input = request.GET.get('search-area')
+    if search_input:
+        contacts = Contact.objects.filter(full_name__icontains=search_input)
+    else:
+        contacts = Contact.objects.all()
+        search_input = ''
+
     context = {
         'contacts': contacts,
+        'search_input': search_input,
     }
     return render(request, 'index.html', context)
 
@@ -51,3 +60,15 @@ def edit_contact(request, pk):
 
     context = {'contact': contact}
     return render(request, 'edit.html', context)
+
+
+def delete_contact(request, pk):
+    contact = Contact.objects.get(id=pk)
+
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('/')
+
+    context = {'contact': contact}
+
+    return render(request, 'delete.html', context)

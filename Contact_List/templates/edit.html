@@ -89,16 +89,14 @@
         </section>
 
         <section class="button-container">
-            <a href="{% url 'contact_profile' contact.pk %}">
                 <div class="update-contact">
                     <i class="fas fa-check-circle icon-gradient"></i>
                     <button class="button">Save Contact</button>
                 </div>
-            </a>
         </section>
 
         <section class="button-container">
-            <a href="delete.html">
+            <a href="{% url 'delete_contact' contact.pk %}">
                 <div class="update-contact">
                     <i class="fas fa-trash icon-gradient"></i>
                     <button class="button">Delete Contact</button>

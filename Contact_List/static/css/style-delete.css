@@ -111,3 +111,20 @@ a {
     color: #fff;
     background-color: #313438;
 }
+
+.delete-button{
+	 background-color: #313438;
+	 border: none;
+	 color: #fff;
+	 font-size: 1.3em;
+	 padding-left: 1.5em;
+	 cursor: pointer;
+}
+
+.delete-icon{
+	background: linear-gradient(90deg, rgba(111,177,127,1) 0%, rgba(154,173,89,1) 100%);
+	border-radius: 100px;
+	font-size: 1.5em;
+	padding: .5em;
+	cursor: pointer;
+}

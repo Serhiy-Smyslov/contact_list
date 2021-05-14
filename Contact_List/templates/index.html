@@ -19,12 +19,13 @@
   <body>
     <div class="container">
       <header class="header">
-        <form class="search-bar">
+        <form id="search-form" class="search-bar" action="/" method="GET">
           <input
             type="search-name"
             class="contact-search"
             name="search-area"
             placeholder="Поиск"
+            value="{{search_input}}"
           />
         </form>
 
@@ -52,7 +53,7 @@
 
           <hr />
           {% empty %}
-          <p>Empty contacts...</p>
+          <h3 style="color: #fff; text-align: center;">No contacts found...</h3>
           {% endfor %}
         </ul>
       </section>
