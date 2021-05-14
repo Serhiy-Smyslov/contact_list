@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -7,7 +8,7 @@
       src="https://kit.fontawesome.com/651d2edad9.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style-profile.css" />
+    <link rel="stylesheet" href="{% static 'css/style-profile.css' %}" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
@@ -19,13 +20,13 @@
     
     <div class="container">
         <header class="hero">
-            <a href="index.html">
+            <a href="{% url 'index' %}">
                 <i class="fas fa-arrow-circle-left back-btn"></i>
             </a>
 
             <div class="hero-info">
-                <h1 class="name">John Doe</h1>
-                <p class="relationship">Friend</p>
+                <h1 class="name">{{ profile.full_name | title }}</h1>
+                <p class="relationship">{{ profile.relationship | title }}</p>
             </div>
         </header>
 
@@ -33,7 +34,7 @@
             
             <div class="info-line">
                 <i class="fas fa-phone icon-gradient"></i>
-                <p class="phone-number">888.888.888</p>
+                <p class="phone-number">{{ profile.phone_number | title }}</p>
             </div>
 
             <div class="info-line">
@@ -43,17 +44,17 @@
 
             <div class="info-line">
                 <i class="fas fa-envelope icon-gradient"></i>
-                <p class="email">john@example.com</p>
+                <p class="email">{{ profile.email | title }}</p>
             </div>
 
             <div class="info-line">
                 <i class="fas fa-search-location icon-gradient"></i>
-                <p class="address">888 example</p>
+                <p class="address">{{ profile.address | title }}</p>
             </div>
 
         </section>
 
-        <a href="edit.html">
+        <a href="{% url 'edit_contact' profile.pk %}">
             <section class="edit-contact">
                 <div class="edit-button">
                     <i class="fas fa-cog icon-gradient"></i>

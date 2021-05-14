@@ -1,102 +1,111 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <script
-      src="https://kit.fontawesome.com/651d2edad9.js"
-      crossorigin="anonymous"
+            src="https://kit.fontawesome.com/651d2edad9.js"
+            crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style-edit.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="{% static 'css/style-edit.css' %}"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+            rel="stylesheet"
     />
     <title>Edit Profile</title>
-  </head>
-  <body>
-    <div class="container">
-      <header class="hero">
-        <a href="contact-profile.html">
-          <i class="fas fa-arrow-circle-left back-btn"></i>
+</head>
+<body>
+<div class="container">
+    <header class="hero">
+        <a href="{% url 'contact_profile' contact.pk %}">
+            <i class="fas fa-arrow-circle-left back-btn"></i>
         </a>
 
         <div class="hero-info">
-          <h1 class="name">John Doe</h1>
-          <p class="relationship">Friend</p>
+            <h1 class="name">{{ contact.full_name | title }}</h1>
+            <p class="relationship">{{ contact.relationship | title }}</p>
         </div>
-      </header>
+    </header>
 
-      <section class="contact-info">
-        <div class="info-line">
-          <i class="fas fa-phone icon-gradient"></i>
-          <input
-            type="text"
-            name="fullname"
-            class="type"
-            placeholder="Full Name"
-          />
-        </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <section class="contact-info">
+            <div class="info-line">
+                <i class="fas fa-phone icon-gradient"></i>
+                <input
+                        type="text"
+                        name="fullname"
+                        class="type"
+                        placeholder="Fullname"
+                        value="{{ contact.full_name }}"
+                />
+            </div>
 
-        <div class="info-line">
-          <i class="fas fa-sms text icon-gradient"></i>
-          <input
-            type="text"
-            name="relationship"
-            class="type"
-            placeholder="Relationship"
-          />
-        </div>
+            <div class="info-line">
+                <i class="fas fa-sms text icon-gradient"></i>
+                <input
+                        type="text"
+                        name="relationship"
+                        class="type"
+                        placeholder="Relationship"
+                        value="{{ contact.relationship }}"
+                />
+            </div>
 
-        <div class="info-line">
-          <i class="fas fa-envelope icon-gradient"></i>
-          <input
-            type="text"
-            name="phone"
-            class="type"
-            placeholder="Phone Number"
-          />
-        </div>
+            <div class="info-line">
+                <i class="fas fa-envelope icon-gradient"></i>
+                <input
+                        type="text"
+                        name="phone"
+                        class="type"
+                        placeholder="Phone"
+                        value="{{ contact.phone_number }}"
+                />
+            </div>
 
-        <div class="info-line">
-          <i class="fas fa-envelope icon-gradient"></i>
-          <input
-            type="text"
-            name="email"
-            class="type"
-            placeholder="Email@example.com"
-          />
-        </div>
+            <div class="info-line">
+                <i class="fas fa-envelope icon-gradient"></i>
+                <input
+                        type="text"
+                        name="email"
+                        class="type"
+                        placeholder="Email"
+                        value="{{ contact.email }}"
+                />
+            </div>
 
-        <div class="info-line">
-          <i class="fas fa-search-location icon-gradient"></i>
-          <input
-            type="text"
-            name="address"
-            class="type"
-            placeholder="Address"
-          />
-        </div>
-      </section>
+            <div class="info-line">
+                <i class="fas fa-search-location icon-gradient"></i>
+                <input
+                        type="text"
+                        name="address"
+                        class="type"
+                        placeholder="Address"
+                        value="{{ contact.address }}"
+                />
+            </div>
+        </section>
 
-      <section class="button-container">
-        <a href="#">
-          <div class="update-contact">
-            <i class="fas fa-check-circle icon-gradient"></i>
-            <button class="button">Save Contact</button>
-          </div>
-        </a>
-      </section>
+        <section class="button-container">
+            <a href="{% url 'contact_profile' contact.pk %}">
+                <div class="update-contact">
+                    <i class="fas fa-check-circle icon-gradient"></i>
+                    <button class="button">Save Contact</button>
+                </div>
+            </a>
+        </section>
 
-      <section class="button-container">
-        <a href="delete.html">
-          <div class="update-contact">
-            <i class="fas fa-trash icon-gradient"></i>
-            <button class="button">Delete Contact</button>
-          </div>
-        </a>
-      </section>
-    </div>
-  </body>
+        <section class="button-container">
+            <a href="delete.html">
+                <div class="update-contact">
+                    <i class="fas fa-trash icon-gradient"></i>
+                    <button class="button">Delete Contact</button>
+                </div>
+            </a>
+        </section>
+    </form>
+</div>
+</body>
 </html>
