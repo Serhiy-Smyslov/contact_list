@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +8,7 @@
       src="https://kit.fontawesome.com/651d2edad9.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
@@ -27,18 +28,19 @@
           />
         </form>
 
-        <a href="edit.html">
+        <a href="{% url 'add_contact' %}">
           <i class="fas fa-plus-circle"></i>
         </a>
       </header>
 
       <section class="contacts-library">
         <ul class="contacts-list">
+          {% for contact in contacts reversed %}
           <a href="contact-profile.html">
             <div class="contact-section">
               <li class="list__item">
-                <p class="contact-name">John Doe</p>
-                <p class="relationship">Friend</p>
+                <p class="contact-name">{{contact.full_name|title}}</p>
+                <p class="relationship">{{contact.relationship|title}}</p>
               </li>
 
               <li class="list__item">
@@ -49,52 +51,9 @@
           </a>
 
           <hr />
-
-          <a href="contact-profile.html">
-            <div class="contact-section">
-              <li class="list__item">
-                <p class="contact-name">John Doe</p>
-                <p class="relationship">Friend</p>
-              </li>
-
-              <li class="list__item">
-                <i class="fas fa-phone"></i>
-                <i class="fas fa-sms text"></i>
-              </li>
-            </div>
-          </a>
-
-          <hr />
-
-          <a href="contact-profile.html">
-            <div class="contact-section">
-              <li class="list__item">
-                <p class="contact-name">John Doe</p>
-                <p class="relationship">Friend</p>
-              </li>
-
-              <li class="list__item">
-                <i class="fas fa-phone"></i>
-                <i class="fas fa-sms text"></i>
-              </li>
-            </div>
-          </a>
-
-          <hr />
-
-          <a href="contact-profile.html">
-            <div class="contact-section">
-              <li class="list__item">
-                <p class="contact-name">John Doe</p>
-                <p class="relationship">Friend</p>
-              </li>
-
-              <li class="list__item">
-                <i class="fas fa-phone"></i>
-                <i class="fas fa-sms text"></i>
-              </li>
-            </div>
-          </a>
+          {% empty %}
+          <p>Empty contacts...</p>
+          {% endfor %}
         </ul>
       </section>
     </div>
